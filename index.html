@@ -1,16 +1,42 @@
 <!doctype html>
-<html lang="en" class="dark-theme" style="color-scheme: dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Walrus Operator tools</title>
 
+    <!-- Preconnect + font for a cleaner, readable UI -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--
+        Detect the initial theme before the app boots so there's no flash of
+        wrong-colored UI (including the dapp-kit ConnectButton web components,
+        which read these CSS vars straight from the cascade).
+    -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("appearance");
+          if (t !== "light" && t !== "dark") {
+            t = window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+          }
+          document.documentElement.classList.add(t);
+        } catch (e) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+
     <style>
-      /*
-  Josh's Custom CSS Reset
-  https://www.joshwcomeau.com/css/custom-css-reset/
-*/
+      /* Josh's Custom CSS Reset — https://www.joshwcomeau.com/css/custom-css-reset/ */
       *,
       *::before,
       *::after {
@@ -18,6 +44,11 @@
       }
       * {
         margin: 0;
+      }
+      html,
+      body,
+      #root {
+        height: 100%;
       }
       body {
         line-height: 1.5;
@@ -46,9 +77,58 @@
       h6 {
         overflow-wrap: break-word;
       }
-      #root,
-      #__next {
+      #root {
         isolation: isolate;
+      }
+
+      /*
+        Palette consumed by the @mysten/dapp-kit ConnectButton / ConnectModal
+        web components. Radix <Theme appearance={...}> drives the Radix color
+        tokens; these vars keep the dapp-kit web components in sync with the
+        chosen scheme by reacting to the class on <html>.
+      */
+      :root {
+        --background: #0a0a0b;
+        --foreground: #f4f4f5;
+        --card: #11181b;
+        --card-foreground: #f4f4f5;
+        --primary: #6366f1;
+        --primary-foreground: #ffffff;
+        --secondary: #1e1e24;
+        --secondary-foreground: #f4f4f5;
+        --muted: #1e1e24;
+        --muted-foreground: #94a3b8;
+        --border: #27272a;
+        --input: #27272a;
+        --accent: #27272a;
+        --accent-foreground: #f4f4f5;
+        --popover: #0a0a0b;
+        --popover-foreground: #f4f4f5;
+        --ring: #6366f1;
+        --radius: 0.5rem;
+        --cursor-button: pointer;
+        color-scheme: dark;
+      }
+
+      html.light {
+        --background: #ffffff;
+        --foreground: #111827;
+        --card: #f9fafb;
+        --card-foreground: #111827;
+        --primary: #4f46e5;
+        --primary-foreground: #ffffff;
+        --secondary: #f3f4f6;
+        --secondary-foreground: #111827;
+        --muted: #f3f4f6;
+        --muted-foreground: #6b7287;
+        --border: #e5e7eb;
+        --input: #e5e7eb;
+        --accent: #4f46f5;
+        --accent-foreground: #ffffff;
+        --popover: #ffffff;
+        --popover-foreground: #111827;
+        --ring: #4f46f5;
+        color-scheme: light;
       }
     </style>
   </head>

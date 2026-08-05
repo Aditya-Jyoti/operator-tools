@@ -18,7 +18,7 @@ export type WalrusScanNode = {
 	poolShare: number;
 	weight: number;
 	operator: boolean;
-}
+};
 
 export type ObjectChangeOverride = {
 	digest: string;
@@ -29,20 +29,7 @@ export type ObjectChangeOverride = {
 	version: string;
 };
 
-export type NodeInfoFieldsOverride = {
-	node_info: {
-		fields: {
-			name: string;
-			node_id: string;
-			commission: number;
-		};
-	};
-};
-
-export type CommissionReceiverFields = {
-	commission_receiver: {
-		fields: {
-			pos0: string;
-		};
-	};
-};
+// A parsed Move value/struct. JSON-RPC and GraphQL represent Move structs differently
+// (JSON-RPC wraps nested structs as `{ dataType, type, fields }`, GraphQL returns raw
+// Move JSON), so field access goes through a normalization helper rather than these types.
+export type MoveStruct = Record<string, unknown>;

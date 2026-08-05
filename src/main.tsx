@@ -1,26 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "@mysten/dapp-kit/dist/index.css";
 import "@radix-ui/themes/styles.css";
+import "./app.css";
 
-import { SuiClientProvider, WalletProvider } from "@mysten/dapp-kit";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Theme } from "@radix-ui/themes";
+import { DAppKitProvider } from "@mysten/dapp-kit-react";
 import App from "./App.tsx";
-import { networkConfig } from "./networkConfig.ts";
-
-const queryClient = new QueryClient();
+import { dAppKit } from "./dapp-kit.ts";
+import { ThemeProvider } from "./ThemeProvider.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
-		<Theme appearance="dark">
-			<QueryClientProvider client={queryClient}>
-				<SuiClientProvider networks={networkConfig} defaultNetwork="mainnet">
-					<WalletProvider autoConnect>
-						<App />
-					</WalletProvider>
-				</SuiClientProvider>
-			</QueryClientProvider>
-		</Theme>
+		<ThemeProvider>
+			<DAppKitProvider dAppKit={dAppKit}>
+				<App />
+			</DAppKitProvider>
+		</ThemeProvider>
 	</React.StrictMode>,
 );

@@ -1,4 +1,4 @@
-import { useCurrentAccount } from "@mysten/dapp-kit";
+import { useCurrentAccount } from "@mysten/dapp-kit-react";
 import { Container, Flex, Text } from "@radix-ui/themes";
 import ClaimCommission from "./ClaimCommission.tsx";
 

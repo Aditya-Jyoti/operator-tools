@@ -1,0 +1,35 @@
+/* Global baseline shared by both themes.
+   Radix <Theme> supplies its color tokens; here we only set the font stack,
+   surface handling and link styling that should be consistent in either mode. */
+html {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+/* Keep action links in the app accent and underline on hover. */
+a,
+.radix-colors-link {
+  color: var(--accent);
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.15s ease;
+}
+a:hover {
+  text-decoration-color: current;
+}
+
+/* Make the dapp-kit ConnectButton height line up with native inputs. */
+.mysten-connect-button {
+  min-height: 36px;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
