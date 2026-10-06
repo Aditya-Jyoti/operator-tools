@@ -1,5 +1,5 @@
 # bin/bash
 
 # build FE
-pnpm install
-pnpm run build
+bun install
+bun run build

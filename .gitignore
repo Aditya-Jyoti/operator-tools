@@ -1,10 +1,7 @@
 # Logs
 logs
 *.log
-npm-debug.log*
-pnpm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+bun-debug.log*
 
 # Dependency directories
 node_modules/
@@ -26,11 +23,8 @@ build/
 # Optional REPL history
 .node_repl_history
 
-# Output of 'npm pack'
+# Packed tarballs
 *.tgz
-
-# Yarn Integrity file
-.yarn-integrity
 
 # dotenv environment variables file
 .env

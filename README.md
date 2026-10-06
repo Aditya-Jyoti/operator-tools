@@ -22,8 +22,8 @@ Clone the repository and run it locally:
 ```bash
 git clone https://github.com/suicore/operator-tools.git
 cd operator-tools
-npm install
-npm run dev
+bun install
+bun run dev
 ```
 
 ## License
